@@ -1,0 +1,25 @@
+{
+  "name": "testautomationaidriven",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Maycowpq225/testAutomationAiDriven.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Maycowpq225/testAutomationAiDriven/issues"
+  },
+  "homepage": "https://github.com/Maycowpq225/testAutomationAiDriven#readme",
+  "dependencies": {
+    "playwright": "^1.58.2"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.58.2",
+    "@types/node": "^25.3.1"
+  }
+}
