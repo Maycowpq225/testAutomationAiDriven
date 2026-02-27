@@ -1,0 +1,394 @@
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - link [ref=e6] [cursor=pointer]:
+        - /url: ""
+        - img [ref=e7]
+      - generic [ref=e8]:
+        - generic [ref=e10]:
+          - link "REGISTE-SE AGORA | Conheça todas as vantagens" [ref=e11] [cursor=pointer]:
+            - /url: gotoregistration.htm
+            - text: REGISTE-SE AGORA |
+            - link "Conheça todas as vantagens" [ref=e12]:
+              - /url: gotouserbenefits.htm
+          - button " Iniciar sessão" [ref=e13] [cursor=pointer]:
+            - generic [ref=e14]: 
+            - text: Iniciar sessão
+          - button "POR " [ref=e15] [cursor=pointer]:
+            - text: POR
+            - generic [ref=e16]: 
+        - generic [ref=e17]:
+          - generic [ref=e19]:
+            - text: +351 252 004 460
+            - paragraph
+            - generic [ref=e20]: (Custo de chamada para a rede fixa nacional)
+          - generic [ref=e22]:
+            - text: 
+            - link "Tem dúvidas?" [ref=e24] [cursor=pointer]:
+              - /url: https://www.vialivre.pt/pt-pt/apoio-ao-utente/formulario-de-contacto/
+    - generic [ref=e25]:
+      - generic [ref=e27]:
+        - generic [ref=e28]:
+          - button " VOLTAR" [ref=e29] [cursor=pointer]:
+            - generic [ref=e30]: 
+            - text: VOLTAR
+          - text: Pesquisa por matrícula
+        - application [ref=e31]:
+          - tablist [ref=e33]:
+            - 'tab "current step: 1 Pesquisa" [disabled] [ref=e34]':
+              - generic [ref=e35]: "current step:"
+              - generic [ref=e36]: "1"
+              - paragraph [ref=e37]: Pesquisa
+            - tab "2 Selecionar" [disabled] [ref=e39]:
+              - generic [ref=e40]: "2"
+              - paragraph [ref=e41]: Selecionar
+            - tab "3 Pagar" [disabled] [ref=e43]:
+              - generic [ref=e44]: "3"
+              - paragraph [ref=e45]: Pagar
+            - tab "4 Confirmação" [disabled] [ref=e47]:
+              - generic [ref=e48]: "4"
+              - paragraph [ref=e49]: Confirmação
+          - generic [ref=e50]:
+            - heading "Pesquisa" [level=3] [ref=e51]
+            - tabpanel "Pesquisa" [ref=e52]:
+              - generic [ref=e54]:
+                - generic [ref=e55]: Detectou-se um acesso automatizado
+                - generic [ref=e58]: Introduza a matrícula e as datas em que pretende pesquisar
+                - generic [ref=e59]:
+                  - generic [ref=e60]:
+                    - generic [ref=e61]: Matrícula
+                    - generic [ref=e62]: 
+                    - textbox "" [ref=e63]: 7295UE
+                  - generic [ref=e64]:
+                    - generic [ref=e65]: Data / hora de início
+                    - generic [ref=e66]: 
+                    - textbox "Data / hora de início" [ref=e67]:
+                      - /placeholder: 
+                      - text: 27/01/2026 00:00:00
+                  - generic [ref=e68]:
+                    - generic [ref=e69]: Data / hora de fim
+                    - generic [ref=e70]: 
+                    - textbox "Data / hora de fim" [ref=e71]:
+                      - /placeholder: 
+                      - text: 27/02/2026 00:00:00
+                - generic [ref=e74]: Introduza os seus dados pessoais
+                - generic [ref=e75]:
+                  - generic [ref=e76]:
+                    - generic [ref=e77]: Nome
+                    - generic [ref=e78]: 
+                    - textbox "" [ref=e79]: João
+                  - generic [ref=e80]:
+                    - generic [ref=e81]: Apelidos
+                    - generic [ref=e82]: 
+                    - textbox "" [ref=e83]: Oliveira
+                - generic [ref=e84]:
+                  - generic [ref=e85]:
+                    - generic [ref=e86]: NIF
+                    - generic [ref=e87]: 
+                    - textbox "" [ref=e88]: "334742633"
+                  - generic [ref=e89]:
+                    - generic [ref=e90]: Email
+                    - generic [ref=e91]: 
+                    - textbox "" [ref=e92]: teste@gmail.com
+                - generic [ref=e94]:
+                  - generic [ref=e95]: Morada
+                  - generic [ref=e96]: 
+                  - textbox "" [ref=e97]: rua professor 1
+                - generic [ref=e98]:
+                  - generic [ref=e99]:
+                    - generic [ref=e100]: Código Postal
+                    - generic [ref=e101]: 
+                    - textbox "" [ref=e102]: 2820-273
+                  - generic [ref=e103]:
+                    - generic [ref=e104]: Localidade
+                    - generic [ref=e105]: 
+                    - textbox "" [ref=e106]: lisboa
+                  - generic [ref=e107]:
+                    - generic [ref=e108]: País
+                    - generic [ref=e109]: 
+                    - combobox [ref=e110]:
+                      - option [disabled]
+                      - option "Afeganistão"
+                      - option "Albânia"
+                      - option "Alemanha"
+                      - option "Andorra"
+                      - option "Angola"
+                      - option "Anguila"
+                      - option "Antígua e Barbuda"
+                      - option "Antilhas Neerlandesas"
+                      - option "Arábia Saudita"
+                      - option "Argélia"
+                      - option "Argentina"
+                      - option "Arménia"
+                      - option "Aruba"
+                      - option "Austrália"
+                      - option "Austria"
+                      - option "Azerbeijão"
+                      - option "Bélgica"
+                      - option "Bósnia e Herzegóvina"
+                      - option "Bahamas"
+                      - option "Bangladesh"
+                      - option "Barbados"
+                      - option "Barein"
+                      - option "Belize"
+                      - option "Benin"
+                      - option "Bermudas"
+                      - option "Bielorrússia"
+                      - option "Bolivia"
+                      - option "Botswana"
+                      - option "Brasil"
+                      - option "Brunei"
+                      - option "Bulgária"
+                      - option "Burkina Fasso"
+                      - option "Burundi"
+                      - option "Butão"
+                      - option "Cabo Verde"
+                      - option "Camarões"
+                      - option "Camboja"
+                      - option "Canadá"
+                      - option "Cazaquistão"
+                      - option "Chad"
+                      - option "Chile"
+                      - option "China"
+                      - option "Chipre"
+                      - option "Cidade do Vaticano"
+                      - option "Colômbia"
+                      - option "Comores"
+                      - option "Congo"
+                      - option "Coreia do Norte"
+                      - option "Coreia do Sul"
+                      - option "Costa Rica"
+                      - option "Costa do Marfim"
+                      - option "Croácia"
+                      - option "Cuba"
+                      - option "Dinamarca"
+                      - option "Djibuti"
+                      - option "Domínica"
+                      - option "Ecuador"
+                      - option "Egipto"
+                      - option "El Salvador"
+                      - option "Emirados Árabes Unidos"
+                      - option "Eritréia"
+                      - option "Eslováquia"
+                      - option "Eslovénia"
+                      - option "Espanha"
+                      - option "Estónia"
+                      - option "Estados Unidos da América"
+                      - option "Etiópia"
+                      - option "Fidji"
+                      - option "Filipinas"
+                      - option "Finlândia"
+                      - option "França"
+                      - option "Gâmbia"
+                      - option "Gabão"
+                      - option "Gana"
+                      - option "Geórgia"
+                      - option "Gibraltar"
+                      - option "Grécia"
+                      - option "Granada"
+                      - option "Gronelândia"
+                      - option "Guam"
+                      - option "Guatemala"
+                      - option "Guernesey"
+                      - option "Guiana"
+                      - option "Guiné"
+                      - option "Guiné Equatorial"
+                      - option "Guiné-Bissau"
+                      - option "Haiti"
+                      - option "Honduras"
+                      - option "Hong Kong"
+                      - option "Hungria"
+                      - option "Iémen"
+                      - option "Ilha Bouvet"
+                      - option "Ilha de Man"
+                      - option "Ilhas Caimão"
+                      - option "Ilhas Faroé"
+                      - option "Ilhas Geórgia do Sul e Sandwich do Sul"
+                      - option "Ilhas Malvinas"
+                      - option "Ilhas Marianas do Norte"
+                      - option "Ilhas Marshall"
+                      - option "Ilhas Menores Distantes dos Estados Unidos"
+                      - option "Ilhas Salomão"
+                      - option "Ilhas Turcas e Caicos"
+                      - option "Ilhas Virgens Britânicas"
+                      - option "Ilhas Virgens dos Estados Unidos"
+                      - option "India"
+                      - option "Indonésia"
+                      - option "Irão"
+                      - option "Iraque"
+                      - option "Irlanda"
+                      - option "Islândia"
+                      - option "Israel"
+                      - option "Itália"
+                      - option "Jamaica"
+                      - option "Japão"
+                      - option "Jersey"
+                      - option "Jordânia"
+                      - option "Kiribati"
+                      - option "Kuwait"
+                      - option "Líbano"
+                      - option "Líbia"
+                      - option "Laos"
+                      - option "Lesoto"
+                      - option "Letónia"
+                      - option "Libéria"
+                      - option "Liechtenstein"
+                      - option "Lituânia"
+                      - option "Luxemburgo"
+                      - option "México"
+                      - option "Macau"
+                      - option "Macedónia"
+                      - option "Madagáscar"
+                      - option "Malásia"
+                      - option "Malawi"
+                      - option "Maldivas"
+                      - option "Mali"
+                      - option "Malta"
+                      - option "Marrocos"
+                      - option "Maurícias"
+                      - option "Mauritânia"
+                      - option "Mianmar"
+                      - option "Micronésia"
+                      - option "Moçambique"
+                      - option "Moldávia"
+                      - option "Mongólia"
+                      - option "Monserrate"
+                      - option "Níger"
+                      - option "Namíbia"
+                      - option "Nauru"
+                      - option "Nepal"
+                      - option "Nicarágua"
+                      - option "Nigéria"
+                      - option "Niue"
+                      - option "Noruega"
+                      - option "Nova Caledónia"
+                      - option "Nova Zelândia"
+                      - option "Omã"
+                      - option "Países Baixos"
+                      - option "Palau"
+                      - option "Panamá"
+                      - option "Papuásia-Nova Guiné"
+                      - option "Paquistão"
+                      - option "Paraguai"
+                      - option "Peru"
+                      - option "Polónia"
+                      - option "Polinésia Francesa"
+                      - option "Porto Rico"
+                      - option "Portugal" [selected]
+                      - option "Qatar"
+                      - option "Quénia"
+                      - option "Quirguizistão"
+                      - option "Rússia"
+                      - option "Reino Unido"
+                      - option "República Centro"
+                      - option "República Checa"
+                      - option "República Democrática Congo"
+                      - option "República Dominicana"
+                      - option "República do África do Sul"
+                      - option "Roménia"
+                      - option "Ruanda"
+                      - option "São Cristóvão e Nevis"
+                      - option "São Marinho"
+                      - option "São Tomé e Príncipe"
+                      - option "São Vicente e Granadinas"
+                      - option "Sérvia"
+                      - option "Síria"
+                      - option "Samoa Americana"
+                      - option "Samoa Occidental"
+                      - option "Santa Helena e Dependências"
+                      - option "Santa Lúcia"
+                      - option "Senegal"
+                      - option "Serra Leoa"
+                      - option "Seychelles"
+                      - option "Singapura"
+                      - option "Somália"
+                      - option "Sri Lanka"
+                      - option "Suécia"
+                      - option "Suíça"
+                      - option "Suazilândia"
+                      - option "Sudão"
+                      - option "Suriname"
+                      - option "Tailândia"
+                      - option "Taiwan"
+                      - option "Tajiquistão"
+                      - option "Tanzânia"
+                      - option "Território Britânico do Oceano Índico"
+                      - option "Territórios Austrais Franceses"
+                      - option "Timor"
+                      - option "Togo"
+                      - option "Tokelau"
+                      - option "Tonga"
+                      - option "Trindade e Tobago"
+                      - option "Tunísia"
+                      - option "Turquemenistão"
+                      - option "Turquia"
+                      - option "Tuvalu"
+                      - option "Ucrânia"
+                      - option "Uganda"
+                      - option "Uruguai"
+                      - option "Uzbequistão"
+                      - option "Vanuatu"
+                      - option "Venezuela"
+                      - option "Vietname"
+                      - option "Wallis e Futura, Ilhas"
+                      - option "Zâmbia"
+                      - option "Zimbabué"
+                - generic [ref=e112]:
+                  - checkbox [checked] [ref=e113]
+                  - generic [ref=e114]:
+                    - text: Declaro que autorizo o tratamento dos meus dados pessoais nos termos descritos na
+                    - link "Política de Privacidade" [ref=e116] [cursor=pointer]:
+                      - /url: javascript:showPrivacyCookies()
+                - generic [ref=e118]:
+                  - checkbox [checked] [ref=e119]
+                  - generic [ref=e120]: Declaro, na qualidade de titular dos dados fornecidos e dos dados de pesquisa por mim introduzidos, processados no contexto deste site, que os mesmos são verdadeiros, corretos e precisos. Mais declaro assumir toda a responsabilidade por quaisquer danos, diretos ou indiretos, causados em consequência da inexatidão, incorreção e/ou falsidade dos referidos dados.
+                - generic [ref=e122]:
+                  - checkbox [checked] [ref=e123]
+                  - generic [ref=e124]:
+                    - text: Autorizo que a Vialivre, S.A., a Ascendi O&M, a Via Verde Portugal – Gestão de Sistemas Eletrónicos de cobrança, S.A. e a Portvias – Portagem de Vias, S.A., enquanto responsáveis conjuntos pelo tratamento, realizem as operações de tratamento necessárias para efeitos de consulta online de eventuais dívidas de portagens e posterior pagamento num ato único, por referência à matrícula e período inseridos neste formulário. Para o efeito, o Paytolls transmitirá os dados inseridos neste formulário (matrícula, período de pesquisa, e-mail ou nº de telemóvel e, opcionalmente, nome, NIF e morada) à Ascendi O&M, à Via Verde Portugal – Gestão de Sistemas Eletrónicos de cobrança, S.A e à Portvias – Portagem de Vias, S.A., as quais consultarão os valores em dívida e detalhes das passagens nos respetivos sistemas de informação e comunicarão ao Paytolls o valor total em dívida e detalhe das respetivas passagens. Para informação adicional, consulte a nossa
+                    - strong [ref=e125]: Política de Privacidade
+                    - text: ", bem como as Políticas de Privacidade do"
+                    - strong [ref=e126]:
+                      - link "Ascendi O&M" [ref=e127] [cursor=pointer]:
+                        - /url: https://portal.ascendi.pt/es/politica-de-privacidade
+                    - text: ", da"
+                    - strong [ref=e128]:
+                      - link "Via Verde Portugal – Gestão de Sistemas Eletrónicos de cobrança, S.A." [ref=e129] [cursor=pointer]:
+                        - /url: https://www.pagamentodeportagens.pt/PPP_Portal/Terms.aspx
+                    - text: e da
+                    - strong [ref=e130]:
+                      - link "Portvias – Portagem de Vias, S.A." [ref=e131] [cursor=pointer]:
+                        - /url: https://www.portvias.pt/aviso-legal-e-politica-de-privacidade/
+                    - text: .
+                - generic [ref=e133]:
+                  - button "CANCELAR" [ref=e136] [cursor=pointer]
+                  - button "PESQUISAR" [active] [ref=e138] [cursor=pointer]
+            - heading "Selecionar" [level=3] [ref=e140]
+            - text:    
+            - heading "Pagar" [level=3] [ref=e141]
+            - heading "Confirmação" [level=3] [ref=e142]
+            - text:  
+          - generic [ref=e143]:
+            - menu "Pagination"
+      - text: 
+    - generic [ref=e145]:
+      - generic:
+        - link [ref=e149] [cursor=pointer]:
+          - /url: https://www.vialivre.pt/
+          - img [ref=e150]
+        - generic [ref=e152]:
+          - generic [ref=e153]:  
+          - generic [ref=e154]: Termos Legais | Política de Privacidade e Cookies | Copyright © 2020
+  - iframe [ref=e157]:
+    - generic [ref=f5e2]:
+      - generic [ref=f5e5]:
+        - link "Privacy" [ref=f5e6] [cursor=pointer]:
+          - /url: https://www.google.com/intl/en/policies/privacy/
+        - text: "-"
+        - link "Terms" [ref=f5e7] [cursor=pointer]:
+          - /url: https://www.google.com/intl/en/policies/terms/
+      - generic [ref=f5e8]:
+        - generic [ref=f5e9]:
+          - text: protected by
+          - strong [ref=f5e10]: reCAPTCHA
+        - generic [ref=f5e11]: "-"

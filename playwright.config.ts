@@ -30,13 +30,39 @@ export default defineConfig({
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
+    
+    /* Anti-detection configurations */
+    userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+    viewport: { width: 1366, height: 768 },
+    locale: 'pt-PT',
+    timezoneId: 'Europe/Lisbon',
+    
+    /* Extra HTTP headers */
+    extraHTTPHeaders: {
+      'Accept-Language': 'pt-PT,pt;q=0.9,en-US;q=0.8,en;q=0.7'
+    }
   },
 
   /* Configure projects for major browsers */
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: { 
+        ...devices['Desktop Chrome'],
+        // Argumentos anti-detecção do Chrome
+        launchOptions: {
+          args: [
+            '--no-first-run',
+            '--no-default-browser-check',
+            '--disable-blink-features=AutomationControlled',
+            '--disable-features=VizDisplayCompositor',
+            '--disable-extensions-except',
+            '--disable-extensions',
+            '--start-maximized',
+            '--window-size=1366,768'
+          ]
+        }
+      },
     },
 
     {
