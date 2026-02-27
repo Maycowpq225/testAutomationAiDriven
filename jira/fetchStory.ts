@@ -1,10 +1,12 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { JiraClient, JiraStory, JiraAttachment } from './jiraClient';
+import { generateFeatureFile } from './generateFeature';
 
 /**
- * Script para buscar uma história do Jira e salvar todas as informações
- * em uma pasta na raiz do projeto.
+ * Script para buscar uma história do Jira, salvar as informações
+ * na pasta 'generated-test-cases/' e gerar automaticamente o arquivo .feature
+ * com cenários BDD usando IA (GitHub Models API + openai).
  *
  * Uso:
  *   npx ts-node jira/fetchStory.ts <URL_DA_HISTORIA>
@@ -34,21 +36,17 @@ async function main(): Promise<void> {
   console.log(`📝 Título: ${story.title}`);
   console.log(`📎 Anexos encontrados: ${story.attachments.length}`);
 
-  // 3. Cria a pasta com o título da história (sanitizado)
-  const folderName = sanitizeFolderName(`${story.key} - ${story.title}`);
+  // 3. Salva os dados na pasta 'generated-test-cases'
   const projectRoot = path.resolve(__dirname, '..');
-  const storyDir = path.join(projectRoot, folderName);
+  const storyDir = path.join(projectRoot, 'generated-test-cases');
 
   if (!fs.existsSync(storyDir)) {
     fs.mkdirSync(storyDir, { recursive: true });
   }
-  console.log(`\n📁 Pasta criada: ${folderName}/`);
+  console.log(`\n📁 Usando pasta: generated-test-cases/`);
 
-  // 4. Salva as informações em um arquivo de resumo
-  const summaryPath = path.join(storyDir, 'story-info.md');
+  // 4. Monta o conteúdo da história para enviar à IA
   const summaryContent = buildSummary(story, url);
-  fs.writeFileSync(summaryPath, summaryContent, 'utf-8');
-  console.log(`✅ Resumo salvo: story-info.md`);
 
   // 5. Faz download dos anexos
   if (story.attachments.length > 0) {
@@ -62,19 +60,10 @@ async function main(): Promise<void> {
     }
   }
 
-  console.log(`\n🎉 Concluído! Todas as informações foram salvas em: ${folderName}/\n`);
-}
+  // 6. Gera o arquivo .feature com cenários BDD via IA
+  await generateFeatureFile(story, summaryContent, storyDir);
 
-/**
- * Sanitiza o nome da pasta removendo caracteres inválidos do sistema de arquivos.
- */
-function sanitizeFolderName(name: string): string {
-  return name
-    .replace(/[<>:"/\\|?*]/g, '-')  // Caracteres inválidos no Windows
-    .replace(/\s+/g, ' ')            // Espaços múltiplos → um espaço
-    .replace(/\.+$/, '')              // Remove pontos no final
-    .trim()
-    .substring(0, 100);               // Limita o tamanho
+  console.log(`\n🎉 Concluído! Dados do Jira e cenários BDD salvos em: generated-test-cases/\n`);
 }
 
 /**
