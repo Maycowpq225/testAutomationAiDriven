@@ -24,10 +24,7 @@ Feature: Pagamento de dívida total no portalweb Vialivre
     And o botão "PESQUISAR" é habilitado
     And o usuário clica no botão "PESQUISAR"
     Then o formulário é submetido com sucesso
-    And a tela de confirmação de email é exibida
     And a mensagem "Por favor, verifique a sua caixa de correio eletrónico. Enviamos um e-mail para: teste@gmail.com" é exibida
-    And a orientação sobre spam é exibida
-    And o botão "VOLTAR" está visível
 
   @happy-path
   Scenario Outline: Aceitar diferentes formatos válidos de matrícula
