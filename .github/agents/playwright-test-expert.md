@@ -138,37 +138,40 @@ For each Page Object needed:
 
 **Spec file rules**:
 - All scenarios from the same `.feature` file go into a single spec file.
-- Use `test.describe('Feature name', () => { ... })` to group scenarios.
+- **DO NOT use `test.describe()`** — write tests directly at the root level of the file.
 - Each `test('Scenario name', ...)` title must match exactly the `Scenario:` name from the Gherkin.
 - Tag-based organization: `@happy-path` scenarios use standard `test()`, `@negative` scenarios can use `test.fail()` if expected to fail.
 - Section comments: `// Given`, `// When`, `// Then` matching BDD structure.
-- Reuse Page Object instances across tests using `test.beforeEach` if appropriate.
+- **Import test utilities from hooks**: `import { test, expect } from '../../hooks';`
 - Import all Page Objects at the top.
+- Always import and use `TestDataGenerator` for dynamic test data generation.
 - If test data varies per scenario (Scenario Outline), use `test.each`.
 
 **TypeScript conventions**:
 ```typescript
-import { test, expect } from '@playwright/test';
+import { test, expect } from '../../hooks';
 import { HomePage } from '../pageObjects/HomePage';
 import { DebtPaymentPage } from '../pageObjects/DebtPaymentPage';
+import { TestDataGenerator, TestData } from '../../utils/TestDataGenerator';
 
-test.describe('Feature Name', () => {
-  test('Scenario name matching Gherkin exactly', async ({ page }) => {
-    // Given
-    const homePage = new HomePage(page);
-    const featurePage = new FeaturePage(page);
+// NO test.describe — tests directly at root level
+test('Scenario name matching Gherkin exactly', async ({ page }) => {
+  const homePage = new HomePage(page);
+  const featurePage = new FeaturePage(page);
+  const dataGenerator = new TestDataGenerator();
 
-    await homePage.navigate();
-    await homePage.acceptCookies();
+  // Given
+  const testData: TestData = await dataGenerator.generateTestData();
+  await homePage.navigate();
+  await homePage.acceptCookies();
 
-    // When
-    await featurePage.fillForm({ ... });
-    await featurePage.acceptAllTerms();
-    await featurePage.clickSubmit();
+  // When
+  await featurePage.fillForm(testData);
+  await featurePage.acceptAllTerms();
+  await featurePage.clickSubmit();
 
-    // Then
-    await featurePage.expectSuccessConfirmation('value');
-  });
+  // Then
+  await featurePage.expectSuccessConfirmation(testData.email);
 });
 ```
 
@@ -207,6 +210,9 @@ test.describe('Feature Name', () => {
 Before writing any file, confirm:
 - [ ] Every Gherkin `Scenario:` has a corresponding `test()` with matching title
 - [ ] All Gherkin step data (field values, URLs, messages) is present in the generated code
+- [ ] **CRITICAL**: Import from hooks — `import { test, expect } from '../../hooks';`
+- [ ] **CRITICAL**: NO `test.describe()` usage — tests directly at root level
+- [ ] TestDataGenerator is imported and used for dynamic data generation
 - [ ] No hardcoded locators in spec files — all go through Page Objects
 - [ ] No duplicated locators across Page Object files
 - [ ] All Page Object methods have JSDoc comments
@@ -232,42 +238,32 @@ Scenario: Fluxo de sucesso completo com dados válidos
 
 ### Output (Spec — `e2e/feature/pesquisa-de-divida.spec.ts`):
 ```typescript
-import { test, expect } from '@playwright/test';
+import { test, expect } from '../../hooks';
 import { HomePage } from '../pageObjects/HomePage';
 import { DebtPaymentPage } from '../pageObjects/DebtPaymentPage';
+import { TestDataGenerator, TestData } from '../../utils/TestDataGenerator';
 
-test.describe('Pesquisa de Dívida', () => {
-  test('Fluxo de sucesso completo com dados válidos', async ({ page }) => {
-    const homePage = new HomePage(page);
-    const debtPaymentPage = new DebtPaymentPage(page);
+// Direct test at root level - NO test.describe
+test('Fluxo de sucesso completo com dados válidos', async ({ page }) => {
+  const homePage = new HomePage(page);
+  const debtPaymentPage = new DebtPaymentPage(page);
+  const dataGenerator = new TestDataGenerator();
 
-    // Given
-    await homePage.navigate();
-    await expect(page).toHaveURL(/portalweb/);
-    await homePage.acceptCookies();
+  // Given
+  const testData: TestData = await dataGenerator.generateTestData();
+  await homePage.navigate();
+  await expect(page).toHaveURL(/portalweb/);
+  await homePage.acceptCookies();
 
-    // When
-    await homePage.goToDebtPayment();
-    await page.waitForLoadState('domcontentloaded');
-    await debtPaymentPage.fillForm({
-      matricula: '7395UE',
-      startDate: '27/01/2026 00:00:00',
-      endDate: '26/02/2026 23:59:59',
-      nome: 'João',
-      apelido: 'Silva',
-      nif: '295325550',
-      email: 'teste@gmail.com',
-      morada: 'Rua João Senhor Neto, 1',
-      codigoPostal: '1000-000',
-      localidade: 'Lisboa',
-      pais: 'Portugal',
-    });
-    await debtPaymentPage.acceptAllTerms();
-    await expect(debtPaymentPage.pesquisarButton).toBeEnabled();
-    await debtPaymentPage.clickPesquisar();
+  // When
+  await homePage.goToDebtPayment();
+  await page.waitForLoadState('domcontentloaded');
+  await page.waitForTimeout(3000);
+  await debtPaymentPage.fillForm(testData);
+  await debtPaymentPage.acceptAllTerms();
+  await debtPaymentPage.clickPesquisar();
 
-    // Then
-    await debtPaymentPage.expectEmailConfirmation('teste@gmail.com');
-  });
+  // Then
+  await debtPaymentPage.expectEmailConfirmation(testData.email);
 });
 ```
