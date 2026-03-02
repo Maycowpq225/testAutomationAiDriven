@@ -63,8 +63,8 @@ project-root/
 - Identify: the **feature name**, all **scenario names**, all **step data** (field names, values, URLs, messages).
 
 ### STEP 2 — Audit existing code (BEFORE generating anything)
-- Check `e2e/pageObjects/` for existing Page Object files related to this feature.
-- Check `e2e/feature/` for an existing spec file for this feature.
+- Check `e2e/pageObjects/` for existing Page Object files related to this feature(It might have a different name but cover the same functionality).
+- Check `e2e/feature/` for an existing spec file for this feature(It might have a different name but cover the same functionality).
 - **If files exist**: plan improvements/additions only — do NOT rewrite from scratch.
 - **If files don't exist**: plan new Page Objects and spec file.
 - Identify which Page Objects and methods already cover the Gherkin steps.
