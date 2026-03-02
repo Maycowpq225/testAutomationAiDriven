@@ -75,7 +75,7 @@ function resolveFeaturePath(projectRoot: string, input: string): string {
   if (path.isAbsolute(normalized)) {
     return normalized;
   }
-  return path.join(projectRoot, 'generated-test-cases', normalized);
+  return path.join(projectRoot, 'e2e', 'ai-bdd-generated', normalized);
 }
 
 async function runAgent(
@@ -303,7 +303,7 @@ function saveRunReport(
   output: AgentResponse,
   writtenFiles: string[]
 ): string {
-  const reportsDir = path.join(projectRoot, 'generated-test-cases', '.runs');
+  const reportsDir = path.join(projectRoot, 'e2e', 'ai-bdd-generated', '.runs');
   fs.mkdirSync(reportsDir, { recursive: true });
 
   const featureName = path.basename(featurePath, '.feature');

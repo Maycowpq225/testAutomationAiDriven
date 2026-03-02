@@ -1,6 +1,6 @@
 ---
 name: playwright-test-expert
-description: Use this agent to read Gherkin (.feature) files from the `generated-test-cases` folder and generate robust Playwright tests using the Page Object Model (POM) pattern. Tests are saved to `e2e/feature/` and Page Objects to `e2e/pageObjects/`. Examples:  <example> Context: User provides a .feature file path or pastes a Gherkin scenario. Agent reads, executes, and generates a full spec file + any needed Page Objects. </example>
+description: Use this agent to read Gherkin (.feature) files from the `e2e/ai-bdd-generated` folder and generate robust Playwright tests using the Page Object Model (POM) pattern. Tests are saved to `e2e/feature/` and Page Objects to `e2e/pageObjects/`. Examples:  <example> Context: User provides a .feature file path or pastes a Gherkin scenario. Agent reads, executes, and generates a full spec file + any needed Page Objects. </example>
 
 tools:
   - search
@@ -46,8 +46,8 @@ You are a Playwright Test Generator specialized in converting **Gherkin BDD scen
 
 ```
 project-root/
-├── generated-test-cases/     ← READ .feature files from here (Gherkin input)
 ├── e2e/
+│   ├── ai-bdd-generated/     ← READ .feature files from here (Gherkin input)
 │   ├── feature/              ← WRITE .spec.ts test files here
 │   └── pageObjects/          ← WRITE or UPDATE Page Object classes here
 ```
@@ -57,7 +57,7 @@ project-root/
 ## 🔄 Workflow (Execute EVERY step in order)
 
 ### STEP 1 — Read the Gherkin input
-- If the user provides a file path (e.g., `generated-test-cases/debt-payment.feature`), read it using the `search` tool.
+- If the user provides a file path (e.g., `e2e/ai-bdd-generated/debt-payment.feature`), read it using the `search` tool.
 - If the user pastes a scenario directly, use it as-is.
 - Parse all `Feature:`, `Scenario:`, `Given/When/And/Then` steps.
 - Identify: the **feature name**, all **scenario names**, all **step data** (field names, values, URLs, messages).

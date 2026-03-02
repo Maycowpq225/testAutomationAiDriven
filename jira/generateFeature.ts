@@ -124,7 +124,7 @@ export async function generateFeatureFile(
   const featurePath = path.join(outputDir, featureFileName);
   fs.writeFileSync(featurePath, cleanContent, 'utf-8');
 
-  console.log(`   ✅ Arquivo gerado: generated-test-cases/${featureFileName}`);
+  console.log(`   ✅ Arquivo gerado: e2e/ai-bdd-generated/${featureFileName}`);
 
   return featurePath;
 }

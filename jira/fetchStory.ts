@@ -5,7 +5,7 @@ import { generateFeatureFile } from './generateFeature';
 
 /**
  * Script para buscar uma história do Jira, salvar as informações
- * na pasta 'generated-test-cases/' e gerar automaticamente o arquivo .feature
+ * na pasta 'e2e/ai-bdd-generated/' e gerar automaticamente o arquivo .feature
  * com cenários BDD usando IA (GitHub Models API + openai).
  *
  * Uso:
@@ -36,14 +36,14 @@ async function main(): Promise<void> {
   console.log(`📝 Título: ${story.title}`);
   console.log(`📎 Anexos encontrados: ${story.attachments.length}`);
 
-  // 3. Salva os dados na pasta 'generated-test-cases'
+  // 3. Salva os dados na pasta 'e2e/ai-bdd-generated'
   const projectRoot = path.resolve(__dirname, '..');
-  const storyDir = path.join(projectRoot, 'generated-test-cases');
+  const storyDir = path.join(projectRoot, 'e2e', 'ai-bdd-generated');
 
   if (!fs.existsSync(storyDir)) {
     fs.mkdirSync(storyDir, { recursive: true });
   }
-  console.log(`\n📁 Usando pasta: generated-test-cases/`);
+  console.log(`\n📁 Usando pasta: e2e/ai-bdd-generated/`);
 
   // 4. Monta o conteúdo da história para enviar à IA
   const summaryContent = buildSummary(story, url);
@@ -63,7 +63,7 @@ async function main(): Promise<void> {
   // 6. Gera o arquivo .feature com cenários BDD via IA
   await generateFeatureFile(story, summaryContent, storyDir);
 
-  console.log(`\n🎉 Concluído! Dados do Jira e cenários BDD salvos em: generated-test-cases/\n`);
+  console.log(`\n🎉 Concluído! Dados do Jira e cenários BDD salvos em: e2e/ai-bdd-generated/\n`);
 }
 
 /**

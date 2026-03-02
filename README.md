@@ -26,11 +26,11 @@ npm install
 O projeto possui um fluxo automatizado que:
 1. Se comunica com a API REST do Jira Cloud para extrair informações de histórias (issues)
 2. Gera automaticamente cenários de teste BDD em formato `.feature` (Gherkin) usando IA (Claude via GitHub Models API)
-3. Salva tudo na pasta `generated-test-cases/`
+3. Salva tudo na pasta `e2e/ai-bdd-generated/`
 
 ## Fluxo automático: `.feature` → agente `playwright-test-expert`
 
-Depois de ter um arquivo `.feature` dentro de `generated-test-cases/`, você pode disparar a geração automática de cenários de teste com um único comando:
+Depois de ter um arquivo `.feature` dentro de `e2e/ai-bdd-generated/`, você pode disparar a geração automática de cenários de teste com um único comando:
 
 ```bash
 npm run command -- "SCRUM-6.feature"
@@ -43,11 +43,11 @@ npm run command -- "SCRUM-6"
 ```
 
 O fluxo executa automaticamente:
-1. Lê a feature em `generated-test-cases/<arquivo>.feature`
+1. Lê a feature em `e2e/ai-bdd-generated/<arquivo>.feature`
 2. Carrega o agente `.github/agents/playwright-test-expert.md`
 3. Chama o modelo via GitHub Models API usando `GITHUB_TOKEN`
 4. Escreve os arquivos gerados em `e2e/features/` e `e2e/pageObjects/`
-5. Salva relatório da execução em `generated-test-cases/.runs/`
+5. Salva relatório da execução em `e2e/ai-bdd-generated/.runs/`
 
 Pré-requisito:
 - `GITHUB_TOKEN` configurado no `.env`
@@ -116,20 +116,22 @@ O script executa automaticamente todo o fluxo:
 
 1. **Conectar** à API do Jira usando suas credenciais do `.env`
 2. **Extrair** o título, a descrição (convertida de ADF para Markdown) e a lista de anexos
-3. **Salvar um arquivo `story-info.md`** na pasta `generated-test-cases/` com o resumo completo da história
-4. **Baixar os anexos** legíveis para a subpasta `generated-test-cases/attachments/`
+3. **Salvar um arquivo `story-info.md`** na pasta `e2e/ai-bdd-generated/` com o resumo completo da história
+4. **Baixar os anexos** legíveis para a subpasta `e2e/ai-bdd-generated/attachments/`
 5. **Gerar automaticamente** o arquivo `.feature` com cenários BDD usando IA (Claude via GitHub Models API)
-6. **Salvar o `.feature`** na pasta `generated-test-cases/` com o nome `<ISSUE-KEY>.feature`
+6. **Salvar o `.feature`** na pasta `e2e/ai-bdd-generated/` com o nome `<ISSUE-KEY>.feature`
 
 **Exemplo de estrutura gerada:**
 
 ```
-generated-test-cases/
-├── story-info.md
-├── SCRUM-6.feature
-└── attachments/
-    ├── mockup-tela.png
-    └── especificacao.pdf
+e2e/
+├── ai-bdd-generated/
+│   ├── story-info.md
+│   ├── SCRUM-6.feature
+│   └── attachments/
+│       ├── mockup-tela.png
+│       └── especificacao.pdf
+└── ...
 ```
 
 ### 5. Tipos de anexos suportados
