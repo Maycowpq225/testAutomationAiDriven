@@ -1,12 +1,11 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { JiraClient, JiraStory, JiraAttachment } from './jiraClient';
-import { generateFeatureFile } from './generateFeature';
+import { saveStoryFiles } from './generateFeature';
 
 /**
- * Script para buscar uma história do Jira, salvar as informações
- * na pasta 'e2e/ai-bdd-generated/' e gerar automaticamente o arquivo .feature
- * com cenários BDD usando IA (GitHub Models API + openai).
+ * Script para buscar uma história do Jira e salvar as informações
+ * na pasta 'e2e/jira-storys/' para análise manual.
  *
  * Uso:
  *   npx ts-node jira/fetchStory.ts <URL_DA_HISTORIA>
@@ -36,34 +35,31 @@ async function main(): Promise<void> {
   console.log(`📝 Título: ${story.title}`);
   console.log(`📎 Anexos encontrados: ${story.attachments.length}`);
 
-  // 3. Salva os dados na pasta 'e2e/ai-bdd-generated'
+  // 3. Salva os dados na pasta 'e2e/jira-storys/<issue-key>'
   const projectRoot = path.resolve(__dirname, '..');
-  const storyDir = path.join(projectRoot, 'e2e', 'ai-bdd-generated');
+  const storyDir = path.join(projectRoot, 'e2e', 'jira-storys');
+  const storyFolder = path.join(storyDir, story.key.toLowerCase());
 
-  if (!fs.existsSync(storyDir)) {
-    fs.mkdirSync(storyDir, { recursive: true });
+  if (!fs.existsSync(storyFolder)) {
+    fs.mkdirSync(storyFolder, { recursive: true });
   }
-  console.log(`\n📁 Usando pasta: e2e/ai-bdd-generated/`);
+  console.log(`\n📁 Usando pasta: ${path.relative(projectRoot, storyFolder)}/`);
 
-  // 4. Monta o conteúdo da história para enviar à IA
+  // 4. Monta o conteúdo da história
   const summaryContent = buildSummary(story, url);
 
-  // 5. Faz download dos anexos
-  if (story.attachments.length > 0) {
-    const attachDir = path.join(storyDir, 'attachments');
-    if (!fs.existsSync(attachDir)) {
-      fs.mkdirSync(attachDir, { recursive: true });
-    }
+  // 5. Salva resumo em Markdown
+  const saved = saveStoryFiles(story, summaryContent, storyFolder);
+  console.log(`   🗂️  Resumo salvo em: ${path.relative(projectRoot, saved.summaryPath)}`);
 
+  // 6. Faz download dos anexos
+  if (story.attachments.length > 0) {
     for (const attachment of story.attachments) {
-      await downloadAndSave(client, attachment, attachDir);
+      await downloadAndSave(client, attachment, storyFolder);
     }
   }
 
-  // 6. Gera o arquivo .feature com cenários BDD via IA
-  await generateFeatureFile(story, summaryContent, storyDir);
-
-  console.log(`\n🎉 Concluído! Dados do Jira e cenários BDD salvos em: e2e/ai-bdd-generated/\n`);
+  console.log(`\n🎉 Concluído! Dados do Jira salvos em: e2e/jira-storys/\n`);
 }
 
 /**
@@ -90,7 +86,7 @@ function buildSummary(story: JiraStory, originalUrl: string): string {
       content += `| ${att.filename} | ${att.mimeType} | ${size} |\n`;
     }
 
-    content += `\nOs anexos foram salvos na pasta \`attachments/\`.\n`;
+      content += `\nOs anexos foram salvos na mesma pasta da história.\n`;
   }
 
   return content;
