@@ -28,6 +28,30 @@ O projeto possui um fluxo automatizado que:
 2. Gera automaticamente cenários de teste BDD em formato `.feature` (Gherkin) usando IA (Claude via GitHub Models API)
 3. Salva tudo na pasta `generated-test-cases/`
 
+## Fluxo automático: `.feature` → agente `playwright-test-expert`
+
+Depois de ter um arquivo `.feature` dentro de `generated-test-cases/`, você pode disparar a geração automática de cenários de teste com um único comando:
+
+```bash
+npm run command -- "SCRUM-6.feature"
+```
+
+Também aceita sem extensão:
+
+```bash
+npm run command -- "SCRUM-6"
+```
+
+O fluxo executa automaticamente:
+1. Lê a feature em `generated-test-cases/<arquivo>.feature`
+2. Carrega o agente `.github/agents/playwright-test-expert.md`
+3. Chama o modelo via GitHub Models API usando `GITHUB_TOKEN`
+4. Escreve os arquivos gerados em `e2e/features/` e `e2e/pageObjects/`
+5. Salva relatório da execução em `generated-test-cases/.runs/`
+
+Pré-requisito:
+- `GITHUB_TOKEN` configurado no `.env`
+
 ### 1. Configurar o arquivo `.env`
 
 Na raiz do projeto, crie (ou edite) o arquivo `.env` com as seguintes variáveis:

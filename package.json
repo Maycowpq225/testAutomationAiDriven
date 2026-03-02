@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "jira:fetch": "ts-node jira/fetchStory.ts"
+    "jira:fetch": "ts-node jira/fetchStory.ts",
+    "command": "ts-node scripts/runFeatureAgent.ts",
+    "test:generator": "ts-node scripts/runFeatureAgent.ts"
   },
   "repository": {
     "type": "git",
