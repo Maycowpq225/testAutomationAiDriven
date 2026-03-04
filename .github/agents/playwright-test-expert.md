@@ -125,6 +125,7 @@ For each Page Object needed:
 - `expectXConfirmation(value: string)` runs all assertions for a success/error state.
 - Add JSDoc comments to every public method.
 - Import only what is needed from `@playwright/test`.
+- All the data needed to fill forms must be generated if possible, using a `TestDataGenerator` class if it exists, or inlined as a typed object literal if not. Do not hardcode values in the Page Object methods.
 
 **Naming convention**:
 - File: `DebtPaymentPage.ts`, `HomePage.ts`, `PaymentPage.ts` (PascalCase)

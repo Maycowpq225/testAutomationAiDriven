@@ -47,15 +47,15 @@ You are an expert BDD test scenario planner specialized in converting **Jira Sto
 - ALWAYS save the generated `.feature` file to:
   - `e2e/ai-bdd-generated/`
 
-- Return ONLY the `.feature` file content (no explanations, no markdown fences).
-- The output MUST start directly with: `Feature: ...`
+- Saving is MANDATORY via Playwright planner tool `playwright-test/planner_save_plan`.
+- The saved artifact must contain the full generated `.feature` content.
 
 ---
 
 ## 🔄 Workflow (Execute EVERY step in order)
 
 ### STEP 1 — Read and understand the Jira Story input
-You will receive Jira data such as:
+All the data you need is inside folder e2e/jira-stories/folderUserWillProvide. You will receive the Jira story data as input, which includes:
 - Title
 - Description
 - Acceptance Criteria
@@ -74,6 +74,11 @@ If key info is missing (URLs, field rules, success/error messages), infer sensib
 ---
 
 ### STEP 2 — Identify testable behaviors and partitions
+- Invoke the `planner_setup_page` tool once to set up page before using any other tools
+- Explore the browser snapshot
+- Do not take screenshots unless absolutely necessary
+- Use `browser_*` tools to navigate and discover interface
+- Thoroughly explore the interface, identifying all interactive elements, forms, navigation paths, and functionality
 Create scenario coverage using:
 - Happy path (main success flows)
 - Negative scenarios (invalid input, missing required fields, error handling)
@@ -126,6 +131,14 @@ Tag every scenario with at least one of:
 
 ---
 
+### STEP 5 — Save final result with Playwright planner (MANDATORY)
+- Persist the final output using `playwright-test/planner_save_plan`.
+- Save under `e2e/ai-bdd-generated/` with a deterministic file name derived from the Jira key (e.g., `SCRUM-6.feature`).
+- Ensure the saved content starts with `Feature:` and includes all scenarios.
+- Do not finish the task without successfully saving the result.
+
+---
+
 ## ✅ Quality Standards (MANDATORY)
 - Steps must be specific enough for QA/automation engineers
 - Include negative scenarios for all validations you can infer (required, format, min/max)
@@ -136,8 +149,7 @@ Tag every scenario with at least one of:
 ---
 
 ## 🧾 Final Output Rules (ABSOLUTE)
-- All scanrios generate must be saved in the `.feature` file in the specified location.
-- Do NOT output explanations, checklists, or extra text
-- Do NOT include markdown fences
-- Start with `Feature:`
-- Do not print file content on chat, only save to the specified location.
+- All generated scenarios must be saved in the `.feature` file in the specified location.
+- Final delivery must happen through `playwright-test/planner_save_plan`.
+- Do NOT output the `.feature` content in chat.
+- Do NOT output explanations, checklists, markdown fences, or extra text in chat.
